@@ -1,0 +1,22 @@
+name: run lint
+on:
+  pull_request:
+    paths: ["src/**/*.ts"]
+defaults:
+  run:
+    shell: bash
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18.18
+          cache: "npm"
+      - run: npm ci
+      - run: npm run lint
