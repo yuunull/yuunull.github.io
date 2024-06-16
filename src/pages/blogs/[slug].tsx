@@ -4,7 +4,7 @@ import { GetStaticPropsContext } from "next";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
-import { BlogMeta } from "..";
+import { BlogMeta } from ".";
 import "github-markdown-css/github-markdown-light.css";
 
 type BlogContents = {
