@@ -1,6 +1,7 @@
 import fs from "fs";
-import matter from "gray-matter";
+import path from "path";
 import Link from "next/link";
+import matter from "gray-matter";
 
 type Props = {
   posts: BlogMeta[];
@@ -16,15 +17,27 @@ export type BlogMeta = {
 };
 
 export const getStaticProps = () => {
-  const files = fs.readdirSync("posts");
-  const posts = files.map((fileName) => {
-    const slug = fileName.replace(/\.md$/, "");
-    const fileContent = fs.readFileSync(`posts/${fileName}`, "utf-8");
-    const { data } = matter(fileContent);
-    return {
-      frontMatter: data,
-      slug,
-    };
+  const years = fs.readdirSync("posts");
+  let posts: BlogMeta[] = [];
+
+  years.forEach((year) => {
+    const yearDir = path.join("posts", year);
+    const files = fs.readdirSync(yearDir);
+
+    files.forEach((fileName) => {
+      const slug = `${year}/${fileName.replace(/\.md$/, "")}`;
+      const filePath = path.join(yearDir, fileName);
+      const fileContent = fs.readFileSync(filePath, "utf-8");
+      const { data } = matter(fileContent);
+      posts.push({
+        frontMatter: {
+          title: data.title,
+          date: data.date,
+          description: data.description,
+        },
+        slug,
+      });
+    });
   });
 
   return {
@@ -40,7 +53,14 @@ export default function Blogs({ posts }: Props) {
       <div className="wrapper">
         {posts?.map((post) => (
           <div key={post.slug}>
-            <Link href={`/blogs/${post.slug}`}>{post.frontMatter.title}</Link>
+            <ul>
+              <li>{post.frontMatter.date}</li>
+              <li>
+                <Link href={`/blogs/${post.slug}`}>
+                  {post.frontMatter.title}
+                </Link>
+              </li>
+            </ul>
           </div>
         ))}
       </div>

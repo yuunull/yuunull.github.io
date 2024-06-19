@@ -1,5 +1,5 @@
 ---
-title: "Next.jsでmarkdownブログを構築"
+title: "テスト投稿"
 date: "2024-06-16"
 description: "Next.jsでmarkdownファイルを利用したブログの構築手順を解説しています。"
 ---
