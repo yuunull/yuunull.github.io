@@ -4,7 +4,7 @@ date: "2024-06-16"
 description: "Next.jsでmarkdownファイルを利用したブログの構築手順を解説しています。"
 ---
 
-# A demo of `react-markdown`
+## A demo of `react-markdown`
 
 `react-markdown` is a markdown component for React.
 
