@@ -1,0 +1,39 @@
+.BlogsContainer {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.BlogsList {
+  display: flex;
+  align-items: center;
+}
+
+.BlogsListDate {
+  list-style: none;
+}
+
+.BlogsListTitle {
+  list-style: none;
+  margin-left: 20px;
+}
+
+@media (max-width: 600px) {
+  .BlogsList {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .BlogsListDate {
+    order: 2;
+    list-style: none;
+    font-size: 0.8rem;
+  }
+
+  .BlogsListTitle {
+    order: 1;
+    list-style: none;
+    margin: 0;
+    font-size: 1rem;
+  }
+}

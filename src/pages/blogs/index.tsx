@@ -3,6 +3,8 @@ import path from "path";
 import Link from "next/link";
 import matter from "gray-matter";
 
+import styles from "@/styles/blogs/Blogs.module.css";
+
 type Props = {
   posts: BlogMeta[];
 };
@@ -40,6 +42,12 @@ export const getStaticProps = () => {
     });
   });
 
+  posts.sort(
+    (a, b) =>
+      new Date(b.frontMatter.date).getTime() -
+      new Date(a.frontMatter.date).getTime()
+  );
+
   return {
     props: {
       posts,
@@ -52,10 +60,12 @@ export default function Blogs({ posts }: Props) {
     <>
       <div className="wrapper">
         {posts?.map((post) => (
-          <div key={post.slug}>
-            <ul>
-              <li>{post.frontMatter.date}</li>
-              <li>
+          <div key={post.slug} className={`${styles.BlogsContainer}`}>
+            <ul className={`${styles.BlogsList}`}>
+              <li className={`${styles.BlogsListDate}`}>
+                {post.frontMatter.date}
+              </li>
+              <li className={`${styles.BlogsListTitle}`}>
                 <Link href={`/blogs/${post.slug}`}>
                   {post.frontMatter.title}
                 </Link>
