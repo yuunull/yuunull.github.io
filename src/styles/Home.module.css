@@ -1,0 +1,93 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat&display=swap");
+
+.main {
+  width: 100%;
+}
+
+.main ul {
+  list-style: none;
+}
+
+.main h1 {
+  font-family: "Caveat", cursive;
+}
+
+.main h2 {
+  font-family: "Caveat", cursive;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profileImg {
+  width: 200px;
+  border-radius: 50%;
+}
+
+.profileTitle {
+  text-align: center;
+  font-size: 5rem;
+}
+
+.profileName {
+  color: green;
+}
+
+.profileSubTitle {
+  text-align: center;
+  font-size: 3rem;
+}
+
+.about {
+  width: 50%;
+}
+
+.social {
+  margin-top: 20px;
+  display: flex;
+}
+
+.social li {
+  margin-left: 20px;
+}
+
+.skills {
+  margin-top: 50px;
+}
+
+.skillsTitle {
+  text-align: center;
+  font-size: 3rem;
+}
+
+.skillsIcon {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.skillsIcon ul {
+  margin: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.skillsIcon li {
+  margin: 10px;
+}
+
+@media (max-width: 600px) {
+  .main h1 {
+    text-align: center;
+    font-size: 3.5rem;
+  }
+
+  .main h2 {
+    text-align: center;
+    font-size: 2rem;
+  }
+}
