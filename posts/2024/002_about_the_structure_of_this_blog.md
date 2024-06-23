@@ -72,7 +72,7 @@ SSG を利用するので `getStaticProps` を使っていきます。
 ここでは posts フォルダから md ファイルを取得しタイトル、日付、説明のメタデータを取得しています。  
 そして記事の作成日の新しい順にソートしています。
 
-```js
+```typescript
 export const getStaticProps = () => {
   const years = fs.readdirSync("posts");
   let posts: BlogMeta[] = [];
@@ -114,7 +114,7 @@ export const getStaticProps = () => {
 上記で取得したデータをもとにタイトルを表示する部分を作成します。  
 `/blogs/${post.slug}`でそれぞれの md ファイルのファイル名に応じたルーティングを指定しています。
 
-```js
+```typescript
 export default function Blogs({ posts }: Props) {
   return (
     <>
@@ -147,7 +147,7 @@ export default function Blogs({ posts }: Props) {
 `getStaticPaths`ですべての記事を取得し、`getStaticProps`でパスごとにコンテンツを取得し  
 コンポーネントに渡しています。
 
-```js
+```typescript
 export async function getStaticProps(
   context: GetStaticPropsContext<{ year: string; slug: string }>
 ) {
@@ -186,7 +186,7 @@ export async function getStaticPaths() {
 
 本文は以下のようにライブラリを使ってマークダウン表示させました。
 
-```js
+```typescript
 export default function Post({ frontMatter, content }: BlogContents) {
   return (
     <div className="wrapper">

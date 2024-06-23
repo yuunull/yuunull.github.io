@@ -1,12 +1,13 @@
+import React from "react";
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { GetStaticPropsContext } from "next";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import rehypeHighlight from "rehype-highlight";
 import { BlogMeta } from "..";
 import "github-markdown-css/github-markdown-light.css";
+import { CodeBlock } from "../../../../components/blogs/CodeBlock";
 
 type BlogContents = {
   content: string;
@@ -52,7 +53,12 @@ export default function Post({ frontMatter, content }: BlogContents) {
     <div className="wrapper">
       <h1 className="blog-title">{frontMatter.title}</h1>
       <article className="markdown-body">
-        <Markdown rehypePlugins={[rehypeHighlight]} remarkPlugins={[remarkGfm]}>
+        <Markdown
+          remarkPlugins={[remarkGfm]}
+          components={{
+            pre: CodeBlock,
+          }}
+        >
           {content}
         </Markdown>
       </article>
